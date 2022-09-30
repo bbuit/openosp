@@ -3,7 +3,7 @@
 
 set -uxo
 
-repo=${1:-https://countable@bitbucket.org/openoscar/oscar.git}
+repo=${1:-https://github.com/bbuit/openoscar.git}
 branch=${2:-release/Oscar-BC-15}
 
 echo "Cloning oscar from bitbucket"
