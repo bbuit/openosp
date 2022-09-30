@@ -12,7 +12,7 @@ services:
       environment:
         MYSQL_DATABASE: drugref2
         MYSQL_USER: oscar
-        TZ: America/Vancouver
+        TZ: America/Toronto
       volumes:
         # TODO: build this in to the image.
         - ./docker/db/my.cnf:/etc/mysql/my.cnf
@@ -29,7 +29,7 @@ services:
 
     oscar:
       restart: 'always'
-      image: openosp/open-osp:latest
+      image: bbuitenhuis/lucyoscar19:latest
       build: docker/oscar
       volumes:
         - ./volumes/oscar.properties:/root/oscar.properties
@@ -42,7 +42,7 @@ services:
       networks:
         - back-tier
       environment:
-        TZ: America/Vancouver
+        TZ: America/Toronto
         CATALINA_OPTS: -Djava.awt.headless=true
         JAVA_OPTS: -Dlog4j2.formatMsgNoLookups=true -XX:+UseCMSInitiatingOccupancyOnly -XX:+UseConcMarkSweepGC -Xmx2G -Xms2G -XX:MaxPermSize=1G -XX:CMSInitiatingOccupancyFraction=68 -Xincgc -Dorg.apache.el.parser.COERCE_TO_ZERO=true
       deploy:
@@ -53,7 +53,7 @@ services:
 
     expedius:
       restart: 'always'
-      image: openosp/expedius:latest
+      image: bbuitenhuis/oscarexpedius:latest
       build: docker/expedius
       volumes:
         - ./volumes/ssl.crt:/usr/local/tomcat/conf/ssl.crt
@@ -63,7 +63,7 @@ services:
       networks:
         - back-tier
       environment:
-        TZ: America/Vancouver
+        TZ: America/Toronto
         JAVA_OPTS: -Dlog4j2.formatMsgNoLookups=true
       deploy:
         resources:
@@ -73,7 +73,7 @@ services:
 
     faxws:
       restart: 'always'
-      image: openosp/faxws:latest
+      image: bbuitenhuis/oscarfaxws:latest
       build: docker/faxws
       volumes:
         - ./volumes/OscarDocument:/var/lib/OscarDocument
@@ -84,7 +84,7 @@ services:
       env_file:
         - local.env
       environment:
-        TZ: America/Vancouver
+        TZ: America/Toronto
         MYSQL_HOST: db
         JAVA_OPTS: -Dlog4j2.formatMsgNoLookups=true
       deploy:
