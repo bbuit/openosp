@@ -3,7 +3,7 @@
 cd docker/faxws
 
 ## Clone
-git clone https://bitbucket.org/openoscar/faxws.git
+git clone https://github.com/bbuit/faxws.git
 
 cd faxws
 
